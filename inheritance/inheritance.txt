@@ -1,0 +1,25 @@
+**상속(inheritance)
+1. 상위class의 field와 method를 하위class에서 객체생성 없이 사용.
+   단, private field와 method는 상속 X
+   	생성자 상속 X
+2. extends keyword 사용.
+형식)
+접근제어자 class ClassName(하위) extends class ClassName(상위){
+}
+
+3. 클래스간의 상속은 단일 상속만 가능.
+   다중상속 불가능.
+   계층적 상속은 가능.
+4. 모든 클래스의 최상위 클래스는 Object 이다.
+5. method overriding(재정의) : 하위클래스의 기능에 맞게끔 재정의
+   method의 선언은 그대로..(단, 접근제어자는 넓은 의미로 변경 가능)
+6. this
+   super : 상위 클래스 참조변수
+
+   this()
+   super() : 상위 클래스의 생성자 호출.
+7. 다형성 : 하위 클래스를 참조하여 상위 클래스의 객체를 생성.
+
+
+
+
