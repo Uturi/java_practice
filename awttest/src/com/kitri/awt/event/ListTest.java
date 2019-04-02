@@ -86,6 +86,7 @@ public class ListTest extends Frame implements ItemListener, ActionListener {
 			}
 //			3. listL¿¡ Ãß°¡
 			listL.add(tmp);
+			
 		} else if(ob==tfR) {
 			String tmp = tfR.getText().trim();
 			tfR.setText("");
@@ -93,14 +94,14 @@ public class ListTest extends Frame implements ItemListener, ActionListener {
 				return;
 			}
 			listR.add(tmp);
+			
 		} else if(ob==btL) {
 			String tmp[] = listR.getSelectedItems();
-			if(tmp==null)
-				return;
+//			if(tmp==null)
+//				return;
 			int len = tmp.length;
 			for (int i = 0; i < len; i++) {
-				listL.add(tmp[i]);
-				
+				listL.add(tmp[i]);				
 			}
 			for (int i = len-1; i >= 0; i--) {
 				listR.remove(tmp[i]);

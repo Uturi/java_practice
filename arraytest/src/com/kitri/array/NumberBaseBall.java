@@ -23,7 +23,7 @@ public class NumberBaseBall {
 	private int my[] = new int[3];
 	private int com[] = new int[3];
 	BufferedReader in;
-	public int trycnt=0;
+//	public int trycnt=0;
 	
 	public NumberBaseBall() {
 		comRandom();
@@ -31,45 +31,55 @@ public class NumberBaseBall {
 	}
 	
 	private void comRandom() {//컴퓨터가 첫 3자리난수 발생, 중복숫자 x, 0시작 x
-		do {
 		com[0] = (int) (Math.random()*9)+1;
+		do {
 		com[1] = (int) (Math.random()*10);
+		}
+		while(com[0]==com[1]);
+		do {
 		com[2] = (int) (Math.random()*10);
 		}
-		while(com[0]==com[1] || com[0]==com[2] || com[1]==com[2]);
+		while(com[0]==com[2] || com[1]==com[2]);
 		
 	}
 	
 	private void game() {
+		int trycnt=0;
+		int strike;
+		int ball;
 		while(true) {//내가 입력한 3자리 숫자를 my 배열에 넣기
-			System.out.println("숫자입력 : ");
+			System.out.print("\n숫자입력 : ");
 			int myNum = getNumber();//149
 			my[0] = myNum/100;//1
-			my[1] = (int) (myNum%100)/10;//4
+			my[1] = myNum/10%10;//4
 			my[2] = myNum%10;//9
 			
-			int strike=0;
-			int ball=0;
+			if(my[0]==my[1] || my[1]==my[2] || my[2]==my[0]) {
+				System.out.println("중복된 숫자 입니다. 도전횟수가 증가합니다.");
+				trycnt++;
+				continue;
+			}
+			
+			
+			strike=0;
+			ball=0;
 			//숫자와 자리수 비교
-			//com[0]하고 my[0]같으면strike
-			//com[0]하고 my[1], my[2]같으면 ball
-			//com[1]하고 my[1]같으면strike
-			//com[1]하고 my[0], my[2]같으면 ball
-			//com[2]하고 my[2]같으면strike
-			//com[2]하고 my[0], my[1]같으면 ball
+			//자리수와 숫자가 같으면 스트라이크
+			//숫자만같으면 볼
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
 					if(com[i]==my[j]&&i==j) {
 						strike++;
-						System.out.print(strike+"스트라이크!  ");
+//						System.out.print(strike+"스트라이크!  ");
 					}else if(com[i]==my[j]) {
 						ball++;
-						System.out.println(ball+"볼!");
+//						System.out.print(ball+"볼!");
 					}
 					
 				}
 				
 			}
+			trycnt++;
 			
 						
 			//결과
@@ -80,14 +90,17 @@ public class NumberBaseBall {
 				System.out.print("계속 하시겠습니까? 계속(1), 종료(0) : ");
 				int end = getNumber();
 				if(end==1) {
+					trycnt = 0;
 					comRandom();
 					game();
-				}else 
-					break;
-				
+				}else if(end==0) {
+					System.exit(0);
+				} else
+					System.exit(0);
 			} else {
 			//  6-2. strike가 3이 아니라면
 			//   1. xxx는 x스트라이크 x볼입니다. >> 3번으로
+				System.out.print(trycnt+". "+myNum+"은(는) "+strike+"스트라이크  "+ball+"볼 입니다.");
 
 			}
 		}
@@ -102,7 +115,7 @@ public class NumberBaseBall {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		trycnt++;
+//		trycnt++;
 		return num;
 	}
 

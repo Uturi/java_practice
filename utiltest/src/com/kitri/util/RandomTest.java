@@ -13,5 +13,6 @@ public class RandomTest {
 		System.out.println("i === "+i);
 		int r = random.nextInt(256);
 		System.out.println("r === "+r);
+		
 	}
 }
